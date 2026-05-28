@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Симуляция Пустоты</title>
+    <title>Ничего</title>
     <style>
         * {
             margin: 0;
@@ -37,7 +37,7 @@
             z-index: 1;
         }
 
-        /* Сканирующая линия */
+        /* тут ничего нет */
         .scanner {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 4px;
@@ -52,13 +52,13 @@
             100% { top: 105%; }
         }
 
-        /* Контент поверх сетки */
+        /* тут ничего нет */
         .ui-element {
             z-index: 3;
             text-shadow: 0 0 5px rgba(255, 34, 34, 0.5);
         }
 
-        /* Верхняя панель */
+        /* тут ничего нет */
         header {
             width: 100%;
             display: flex;
@@ -76,7 +76,7 @@
             50% { opacity: 0; }
         }
 
-        /* Центральный блок */
+        /* тут ничего нет */
         .main-container {
             text-align: center;
         }
@@ -87,7 +87,7 @@
             letter-spacing: 10px;
         }
 
-        /* Бесполезные кнопки */
+        /*тут ничего нет */
         .btn-group {
             display: flex;
             gap: 15px;
@@ -112,7 +112,7 @@
             box-shadow: 0 0 15px #ff2222;
         }
 
-        /* Нижний лог «ошибок» */
+        /* Вы нашли какой-то коммент */
         .console-log {
             width: 100%;
             max-width: 600px;
@@ -143,12 +143,12 @@
     </header>
 
     <main class="ui-element main-container">
-        <h1>VOID_OS</h1>
+        <h1>НИЧЕГО</h1>
         <p>Вы находитесь в контролируемом нигде.</p>
         
         <div class="btn-group">
             <button class="btn" onclick="addLog('Запущена симуляция действия...')">Действие</button>
-            <button class="btn" onclick="addLog('Ошибка: Кнопка не имеет назначения.')">Смысл</button>
+            <button class="btn" onclick="addLog('Ошибка: Кнопка не имеет назначения.')">Нажми на меня</button>
         </div>
     </main>
 
@@ -157,7 +157,7 @@
     </footer>
 
     <script>
-        // Часы в реальном времени
+        // тут снова ничего нееееет
         function updateClock() {
             const clockEl = document.getElementById('clock');
             const now = new Date();
@@ -166,7 +166,7 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Функция добавления строк в консоль
+        // ой, тут тоже ничего нет
         const consoleEl = document.getElementById('console');
         function addLog(text) {
             const line = document.createElement('div');
@@ -174,18 +174,18 @@
             line.innerText = `> ${text}`;
             consoleEl.appendChild(line);
 
-            // Удаляем старые строки, чтобы не переполнять экран
+            // Что-то ищете? а тут ничегог нет
             if (consoleEl.children.length > 5) {
                 consoleEl.removeChild(consoleEl.children[0]);
             }
         }
 
-        // Рандомные "ошибки" раз в несколько секунд
+        // ничего нет
         const fakeErrors = [
             "Предупреждение: Ничего не обнаружено.",
             "Сканирование памяти... пусто.",
-            "Пакет данных утерян за ненадобностью.",
-            "Энтропия увеличилась на 0.02%",
+            "Пакет данных утерян...",
+            "Что?",
             "Внимание: Ожидание клика."
         ];
 
@@ -193,6 +193,7 @@
             const randomText = fakeErrors[Math.floor(Math.random() * fakeErrors.length)];
             addLog(randomText);
         }, 4000);
+        /* Это конец и тут тоже ничего нет */
     </script>
 
 </body>
