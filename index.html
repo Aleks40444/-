@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ничего</title>
+    <title>Симуляция Пустоты</title>
     <style>
-        /* Обнуляем отступы и делаем страницу во весь экран */
         * {
             margin: 0;
             padding: 0;
@@ -13,59 +12,187 @@
         }
 
         body {
-            background-color: #0a0a0a; /* Глубокий чёрный */
-            color: #ff3333; /* Неоново-красный */
-            font-family: 'Courier New', Courier, monospace; /* Программистский стиль */
+            background-color: #050505;
+            color: #ff2222;
+            font-family: 'Courier New', Courier, monospace;
             height: 100vh;
             display: flex;
-            justify-content: center;
-            align-content: center;
-            align-items: center;
             flex-direction: column;
-            cursor: pointer;
-            user-select: none; /* Чтобы текст не выделялся случайно при клике */
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Главная точка в центре */
-        .void {
-            font-size: 1.2rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            transition: transform 0.3s ease;
-        }
-
-        body:active .void {
-            transform: scale(0.95); /* Слегка сжимается при клике */
-        }
-
-        /* Всплывающий лог внизу */
-        .log {
+        /* Фоновая сетка */
+        body::before {
+            content: "";
             position: absolute;
-            bottom: 10%;
-            font-size: 0.8rem;
-            opacity: 0.5;
-            text-transform: lowercase;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(255, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+
+        /* Сканирующая линия */
+        .scanner {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(to bottom, rgba(255, 0, 0, 0.5), transparent);
+            box-shadow: 0 0 10px #ff0000;
+            animation: scan 4s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes scan {
+            0% { top: -5%; }
+            100% { top: 105%; }
+        }
+
+        /* Контент поверх сетки */
+        .ui-element {
+            z-index: 3;
+            text-shadow: 0 0 5px rgba(255, 34, 34, 0.5);
+        }
+
+        /* Верхняя панель */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 34, 34, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        /* Центральный блок */
+        .main-container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 10px;
+        }
+
+        /* Бесполезные кнопки */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid #ff2222;
+            color: #ff2222;
+            padding: 10px 20px;
+            font-family: inherit;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #ff2222;
+            color: #050505;
+            box-shadow: 0 0 15px #ff2222;
+        }
+
+        /* Нижний лог «ошибок» */
+        .console-log {
+            width: 100%;
+            max-width: 600px;
+            height: 100px;
+            border: 1px solid rgba(255, 34, 34, 0.2);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            font-size: 0.75rem;
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .log-line {
+            margin-top: 4px;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
 
-    <div class="void">• ничто •</div>
-    <div class="log" id="log-text"></div>
+    <div class="scanner"></div>
+
+    <header class="ui-element">
+        <div>SYSTEM_STATUS: <span class="blink">ONLINE</span></div>
+        <div id="clock">00:00:00</div>
+    </header>
+
+    <main class="ui-element main-container">
+        <h1>VOID_OS</h1>
+        <p>Вы находитесь в контролируемом нигде.</p>
+        
+        <div class="btn-group">
+            <button class="btn" onclick="addLog('Запущена симуляция действия...')">Действие</button>
+            <button class="btn" onclick="addLog('Ошибка: Кнопка не имеет назначения.')">Смысл</button>
+        </div>
+    </main>
+
+    <footer class="ui-element console-log" id="console">
+        <div class="log-line">> Инициализация пустоты... готово.</div>
+    </footer>
 
     <script>
-        // Небольшой интерактив для полноты картины
-        const logText = document.getElementById('log-text');
-        
-        document.body.addEventListener('click', () => {
-            logText.innerText = "вы кликнули, но ничего не произошло.";
-            
-            // Текст исчезает через 1.5 секунды
-            setTimeout(() => {
-                logText.innerText = "";
-            }, 1500);
-        });
+        // Часы в реальном времени
+        function updateClock() {
+            const clockEl = document.getElementById('clock');
+            const now = new Date();
+            clockEl.innerText = now.toTimeString().split(' ')[0];
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Функция добавления строк в консоль
+        const consoleEl = document.getElementById('console');
+        function addLog(text) {
+            const line = document.createElement('div');
+            line.className = 'log-line';
+            line.innerText = `> ${text}`;
+            consoleEl.appendChild(line);
+
+            // Удаляем старые строки, чтобы не переполнять экран
+            if (consoleEl.children.length > 5) {
+                consoleEl.removeChild(consoleEl.children[0]);
+            }
+        }
+
+        // Рандомные "ошибки" раз в несколько секунд
+        const fakeErrors = [
+            "Предупреждение: Ничего не обнаружено.",
+            "Сканирование памяти... пусто.",
+            "Пакет данных утерян за ненадобностью.",
+            "Энтропия увеличилась на 0.02%",
+            "Внимание: Ожидание клика."
+        ];
+
+        setInterval(() => {
+            const randomText = fakeErrors[Math.floor(Math.random() * fakeErrors.length)];
+            addLog(randomText);
+        }, 4000);
     </script>
 
 </body>
