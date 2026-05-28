@@ -1,6 +1,4 @@
-
-<script>
-        // тут снова ничего нееееет
+         // тут снова ничего нееееет
         function updateClock() {
             const clockEl = document.getElementById('clock');
             const now = new Date();
@@ -37,4 +35,3 @@
             addLog(randomText);
         }, 4000);
         /* Это конец и тут тоже ничего нет */
-    </script>
