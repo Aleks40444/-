@@ -1,1 +1,128 @@
+ <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background-color: #050505;
+            color: #ff2222;
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Фоновая сетка */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(255, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+
+        /* тут ничего нет */
+        .scanner {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(to bottom, rgba(255, 0, 0, 0.5), transparent);
+            box-shadow: 0 0 10px #ff0000;
+            animation: scan 4s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes scan {
+            0% { top: -5%; }
+            100% { top: 105%; }
+        }
+
+        /* тут ничего нет */
+        .ui-element {
+            z-index: 3;
+            text-shadow: 0 0 5px rgba(255, 34, 34, 0.5);
+        }
+
+        /* тут ничего нет */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 34, 34, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        /* тут ничего нет */
+        .main-container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 10px;
+        }
+
+        /*тут ничего нет */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid #ff2222;
+            color: #ff2222;
+            padding: 10px 20px;
+            font-family: inherit;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #ff2222;
+            color: #050505;
+            box-shadow: 0 0 15px #ff2222;
+        }
+
+        /* Вы нашли какой-то коммент */
+        .console-log {
+            width: 100%;
+            max-width: 600px;
+            height: 100px;
+            border: 1px solid rgba(255, 34, 34, 0.2);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            font-size: 0.75rem;
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .log-line {
+            margin-top: 4px;
+            opacity: 0.8;
+        }
+    </style>
