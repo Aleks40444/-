@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ничего</title>
+    <style>
+        /* Обнуляем отступы и делаем страницу во весь экран */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a; /* Глубокий чёрный */
+            color: #ff3333; /* Неоново-красный */
+            font-family: 'Courier New', Courier, monospace; /* Программистский стиль */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+            user-select: none; /* Чтобы текст не выделялся случайно при клике */
+            overflow: hidden;
+        }
+
+        /* Главная точка в центре */
+        .void {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            transition: transform 0.3s ease;
+        }
+
+        body:active .void {
+            transform: scale(0.95); /* Слегка сжимается при клике */
+        }
+
+        /* Всплывающий лог внизу */
+        .log {
+            position: absolute;
+            bottom: 10%;
+            font-size: 0.8rem;
+            opacity: 0.5;
+            text-transform: lowercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="void">• ничто •</div>
+    <div class="log" id="log-text"></div>
+
+    <script>
+        // Небольшой интерактив для полноты картины
+        const logText = document.getElementById('log-text');
+        
+        document.body.addEventListener('click', () => {
+            logText.innerText = "вы кликнули, но ничего не произошло.";
+            
+            // Текст исчезает через 1.5 секунды
+            setTimeout(() => {
+                logText.innerText = "";
+            }, 1500);
+        });
+    </script>
+
+</body>
+</html>
